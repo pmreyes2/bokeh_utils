@@ -28,15 +28,15 @@ y0 = 60
 y1 = 1000
 vmin,vmax = -1,1.
 
-N = 500
+N = 200
 x = np.linspace(0, 10, N)
 y = np.linspace(0, 10, N)
 xx, yy = np.meshgrid(x, y)
 d = np.sin(xx)*np.cos(yy)
 
 cmaps = bokeh_utils.get_all_palettes()
-p_width = 800
-p_height = 500
+p_width = 400
+p_height = 250
 map_title = "MAP"
 initial_cmap = "viridis"
 
