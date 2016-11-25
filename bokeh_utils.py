@@ -39,7 +39,7 @@ def get_all_palettes():
 
 
 def create_map_colorbar(data2plot=None,palette_name="jet",fig_width_pxls=800,fig_height_pxls=500,x_range=(0,1),y_range=(0,1),
-            title="MAP",x_axis_type="linear", cmaps=None,cb_title="dB",cb_min_border_left=40,cb_min_border_right=40,
+            title="MAP",x_axis_type="linear", cmaps=None,cb_title="",cb_min_border_left=40,cb_min_border_right=40,
             cb_fig_width_pxls=100,
             min_border_left=20,min_border_right=10,min_border_top=30, min_border_bottom=10,title_font_size="12pt",
             title_align="center",vmin="auto",vmax="auto",
