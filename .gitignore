@@ -1,0 +1,8 @@
+*~
+*.AppleDouble*
+*.DS_Store
+*.lyx#
+*.pyc
+*.swp
+*.c
+*.so
