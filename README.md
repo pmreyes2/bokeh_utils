@@ -52,7 +52,7 @@ select_cm = bokeh_utils.create_cmap_selection(im,imcb,cmaps=cmaps, value=initial
 layout = bokeh.plotting.gridplot([[p,pcb],[low_slider,high_slider],[select_cm]])
 
 fname = "RTI_cb_slider_cmap_select.html"
-bokeh.io.output_file(fname, title="RTI and select",mode='inline')
+bokeh.io.output_file(fname, title="RTI and select",mode='cdn') # use inline instead of cdn for independent page
 bokeh.io.save(layout)
 ```
 ### output
