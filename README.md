@@ -57,3 +57,4 @@ bokeh.io.save(layout)
 ```
 ### output
 
+<img src="https://github.com/pmreyes2/bokeh_utils/blob/master/MAP_cb_controls.png" width="800">
