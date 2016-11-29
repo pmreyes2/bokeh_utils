@@ -54,10 +54,18 @@ def create_map_colorbar(data2plot=None,palette_name="jet",fig_width_pxls=800,fig
         vmin = np.nanmin(data2plot)
     if vmax=="auto":
         vmax = np.nanmax(data2plot)
-    x0=x_range[0]
-    x1=x_range[1]
-    y0=y_range[0]
-    y1=y_range[1]
+    try:
+        x0=x_range[0]
+        x1=x_range[1]
+    except:
+        x0 = x_range.start
+        x1 = x_range.end
+    try:
+        y0=y_range[0]
+        y1=y_range[1]
+    except:
+        y0 = y_range.start
+        y1 = y_range.end
     p = bokeh.plotting.figure(x_range=x_range, y_range=y_range,x_axis_type=x_axis_type,plot_width=fig_width_pxls,
         plot_height=fig_height_pxls, min_border_left=min_border_left,min_border_right=min_border_right,title=title,
         min_border_top=min_border_top,min_border_bottom=min_border_bottom,
