@@ -2,12 +2,14 @@ import bokeh
 import bokeh.plotting
 import numpy as np
 
-def get_all_palettes():
+def get_all_palettes(allmaps=None):
     """
     map_names, palettes_dict, palette_nums_dict = get_all_palettes()
     """
     import matplotlib.cm
-    allmaps = sorted(matplotlib.cm.cmaps_listed.keys() + matplotlib.cm.datad.keys())
+    if type(allmaps)==type(None):
+        # Getting all the map names available in matplotlib
+        allmaps = sorted(matplotlib.cm.cmaps_listed.keys() + matplotlib.cm.datad.keys())
     palette_nums = []
     palettes = []
     map_names = []
