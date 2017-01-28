@@ -20,7 +20,7 @@ import bokeh
 import bokeh.plotting
 import numpy as np
 import calendar
-from bokeh_utils import bokeh_utils
+import bokeh_utils
 
 x0 = calendar.timegm((2016,11,22,14,35,25))*1000.
 x1 = calendar.timegm((2016,11,22,15,40,13))*1000.
@@ -34,7 +34,9 @@ y = np.linspace(0, 10, N)
 xx, yy = np.meshgrid(x, y)
 d = np.sin(xx)*np.cos(yy)
 
-cmaps = bokeh_utils.get_all_palettes()
+cmaps = bokeh_utils.get_all_mpl_palettes(allmaps=['Accent','CMRmap','Greys','viridis'])
+# if allmaps is None, then all the possible matplotlib palettes will be loaded
+# bokeh_utils.valid_mpl_palettes() gives a list of all possible matplotlib palettes
 p_width = 400
 p_height = 250
 map_title = "MAP"
