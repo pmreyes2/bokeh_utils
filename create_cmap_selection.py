@@ -16,7 +16,12 @@ def create_cmap_selection(im,cmaps=None,value="jet"):
             numglyph_palette1[i] = numpalette[i];   // changing values of the palette with those of selected one
             numglyph_palette12[i] = numpalette[i];   // changing values of the palette with those of selected one
         }
-
+        // this is needed to refresh the colorbar:
+        var old = im.glyph.color_mapper.high;
+        im.glyph.color_mapper.high = old+1;
+        im.data_source.trigger('change');
+        im.glyph.color_mapper.high = old;
+        //
         im.data_source.trigger('change');
         """)
     select_cm = bokeh.models.Select(title="Color Map:", value =value, options=cmaps["map_names"],callback=call_cm)
