@@ -2,13 +2,11 @@ import bokeh
 import bokeh.plotting
 import numpy as np
 
-def create_map_colorbar(data2plot=None,palette_name="jet",fig_width_pxls=800,fig_height_pxls=500,x_range=(0,1),y_range=(0,1),
-            title="MAP",x_axis_type="linear", cmaps=None,cb_title="",cb_min_border_left=40,cb_min_border_right=40,
-            cb_fig_width_pxls=100,
+def create_map(data2plot=None,palette_name="jet",fig_width_pxls=800,fig_height_pxls=500,x_range=(0,1),y_range=(0,1),
+            title="MAP",x_axis_type="linear", cmaps=None,cb_title="",create_colorbar=True,
             min_border_left=20,min_border_right=10,min_border_top=30, min_border_bottom=10,title_font_size="12pt",
             title_align="center",vmin="auto",vmax="auto",
-            tools= ["box_zoom,wheel_zoom,pan,reset,previewsave,resize,crosshair"],
-            cb_tools = ["box_zoom,wheel_zoom,pan,reset,previewsave,resize"]):
+            tools= ["box_zoom,wheel_zoom,pan,reset,previewsave,resize"]):
     """
     x_axis_type: "linear", "log", "datetime", "auto"
     """
@@ -40,29 +38,10 @@ def create_map_colorbar(data2plot=None,palette_name="jet",fig_width_pxls=800,fig
     im.glyph.color_mapper.high = vmax
     im.glyph.color_mapper.low = vmin
     p.quad(top=[y1], bottom=[y0], left=[x0], right=[x1],alpha=0) # This is used for hover and taptool
+    if create_colorbar:
+        color_bar = bokeh.models.ColorBar(color_mapper=im.glyph.color_mapper, label_standoff=12, location=(0,0))
+        p.add_layout(color_bar, 'right')
 
-
-
-    pcb = bokeh.plotting.figure(x_range=(0,1), y_range=(vmin,vmax) ,plot_width=cb_fig_width_pxls,
-                plot_height=fig_height_pxls,
-                min_border_left=cb_min_border_left,min_border_right=cb_min_border_right,title=cb_title,
-                min_border_top=min_border_top, min_border_bottom=min_border_bottom,
-                                tools=cb_tools)
-    pcb.title.text_font_size = title_font_size
-    pcb.title.align = title_align
-    cb_data = np.linspace(vmin,vmax,256).reshape(256,1)
-    imcb = pcb.image(image = [cb_data],x=[0],y=[vmin],dw=[1],dh=[vmax-vmin],
-                     palette=cmaps["palettes_dict"][palette_name])
-    pcb.xaxis.major_label_text_color = None
-    pcb.yaxis.major_label_text_color = None
-    pcb.yaxis.major_tick_line_color = None
-    pcb.yaxis.minor_tick_line_color = None
-    pcb.xaxis.major_tick_line_color = None
-    pcb.xaxis.minor_tick_line_color = None
-    pcb.extra_y_ranges = {"right_ticks": bokeh.models.Range1d(start=vmin, end=vmax)}
-    pcb.add_layout(bokeh.models.LinearAxis(y_range_name="right_ticks"),'right')
-
-
-    return p,im,pcb,imcb
+    return p,im
 
 
