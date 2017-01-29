@@ -128,7 +128,6 @@ callback_hover = bokeh.models.CustomJS(args=dict(lmem_source=lmem_source),code="
         crosshair_tool.active = false;
         crosshair_tool.disabled =true;
     }
-    console.log(ch_tool)
     """)
 
 cmaps = bokeh_utils.get_all_mpl_palettes(allmaps=['Accent','CMRmap','Greys','viridis'])
