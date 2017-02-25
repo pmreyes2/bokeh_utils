@@ -5,7 +5,7 @@ import numpy as np
 def create_map(data2plot=None,palette_name="jet",fig_width_pxls=800,fig_height_pxls=500,x_range=(0,1),y_range=(0,1),
             title="MAP",x_axis_type="linear", cmaps=None,cb_title="",create_colorbar=True,
             min_border_left=20,min_border_right=10,min_border_top=30, min_border_bottom=10,title_font_size="12pt",
-            title_align="center",vmin="auto",vmax="auto",
+            title_align="center",vmin="auto",vmax="auto",output_quad=False,
             tools= ["box_zoom,wheel_zoom,pan,reset,previewsave,resize"]):
     """
     x_axis_type: "linear", "log", "datetime", "auto"
@@ -37,11 +37,13 @@ def create_map(data2plot=None,palette_name="jet",fig_width_pxls=800,fig_height_p
     im = p.image(image=[data2plot],dw=[x1-x0],dh=[y1-y0],x=[x0],y=[y0],palette=cmaps["palettes_dict"][palette_name])
     im.glyph.color_mapper.high = vmax
     im.glyph.color_mapper.low = vmin
-    p.quad(top=[y1], bottom=[y0], left=[x0], right=[x1],alpha=0) # This is used for hover and taptool
+    imquad = p.quad(top=[y1], bottom=[y0], left=[x0], right=[x1],alpha=0) # This is used for hover and taptool
     if create_colorbar:
         color_bar = bokeh.models.ColorBar(color_mapper=im.glyph.color_mapper, label_standoff=12, location=(0,0))
         p.add_layout(color_bar, 'right')
-
-    return p,im
+    if output_quad:
+        return p,im,imquad
+    else:
+        return p,im
 
 
